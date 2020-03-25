@@ -1,11 +1,17 @@
 <onload>
-	this.sendcommand('sm_loadcommand');
-	this.createParams(['variable', 'variable2_name']);
+	this.sendcommand('sm_loadcmd');
+	this.createParams(['variable1_name', 'variable2_name']);
 </onload>
 <div>
     This is test page content
     <button @click="sendcommand('sm_testpagecmd')">test</button>
     <div class="data">
-        {{data.dataname.stringname}}
+        Data: {{ data.dataname ? data.dataname.stringname : 'Data still not recived' }} <br/>
+
+        <div v-if="data.dataname">
+            <hr>
+            Save data in variable <button @click="param.variable1_name = data.dataname.stringname">Save</button></br>
+            Variable value: {{param.variable1_name}}
+        </div>
     </div>
 </div>

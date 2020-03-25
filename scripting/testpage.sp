@@ -29,6 +29,7 @@ public void OnPluginStart()
 
 public void BoomPanel3_OnPluginLoad() 
 {
+	//Register template
 	BoomPanel3_RegisterPlugin("Test page", "testpage/index.html", "fa-check", true, ADMFLAG_BAN);
 }
 
@@ -39,8 +40,13 @@ public void OnAllPluginsLoaded()
 
 public Action CMD_LoadCMD(int client, int args)
 {
+	//Get websocket client
 	int webclient = BoomPanel3_GetSocketID(); 
+
+	//Send notification as a test
 	BoomPanel3_SendNotification(webclient, BP3_NOTIFICATION_SUCCESS, "Load success", "sm_loadcmd executed successfully");
+
+	return Plugin_Handled;
 }
 
 public Action CMD_TestPageCMD(int client, int args)
@@ -48,9 +54,13 @@ public Action CMD_TestPageCMD(int client, int args)
 	//Always get websocket client first
 	int webclient = BoomPanel3_GetSocketID(); 
 
+	//Create empty JSON object
 	JSON_Object data = new JSON_Object();
+
+	//Add data to object
 	data.SetString("stringname", "This is string name is coming from Sourcemod testpage.sp");
 
+	//Send it to BoomPanel 3
 	BoomPanel3_ReturnDataObject(webclient, "dataname", data);
 
 	return Plugin_Handled;
