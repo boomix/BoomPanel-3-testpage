@@ -1,0 +1,11 @@
+<onload>
+	this.sendcommand('sm_loadcommand');
+	this.createParams(['variable', 'variable2_name']);
+</onload>
+<div>
+    This is test page content
+    <button @click="sendcommand('sm_testpagecmd')">test</button>
+    <div class="data">
+        {{data.dataname.stringname}}
+    </div>
+</div>
